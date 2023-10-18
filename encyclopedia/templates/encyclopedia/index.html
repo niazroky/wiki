@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+
+{% block body %}
+    <h1>All Pages</h1>
+
+    <ul>
+        {% for entry in entries %} <!--it loops through the all entries that are in storage-->
+
+            <!--the below anchor tag generates a dynamic hyperlink by taking 
+            the 'entry' attribute from the 'views.py' file. And the 'title' variable takes 
+            value 'entry' from the current loop. -->
+            <li><a href="{% url 'entry' title=entry %}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

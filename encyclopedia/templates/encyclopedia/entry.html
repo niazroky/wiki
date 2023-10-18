@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block body %}
+    
+    {{ html_content | safe }}
+
+    <!-- This HTML form is used for editing a page in the web application. -->
+    <form action="{% url 'edit' %}" method="POST">
+        {% csrf_token %} <!-- Include a CSRF token for security. -->
+        <input type="hidden" name="title" value="{{ title }}">
+        <!-- 
+            The hidden input field with the name "title" is used to pass the title of the page 
+            that the user wants to edit to the server. It's not visible to the user but 
+            crucial for identifying the page to be edited. 
+        -->
+        <input type="submit" value="Edit Page" class="btn btn-primary">
+        <!-- The submit button triggers the form submission when clicked. -->
+    </form>
+
+
+{% endblock %}
